@@ -6,7 +6,7 @@ namespace APISubscriber.Models
     {
         public List<SubscriberDetails> GetAllSubscribers()
         {
-            string connectionString = "Host=localhost;Port=5432;Database=subscribers;Username=postgres;Password=isal0037";
+            string connectionString = "Host=localhost;Port=5432;Database=subscribers;Username=admin;Password=isal0037";
 
             List<SubscriberDetails> subscribers = new List<SubscriberDetails>();
 
@@ -33,9 +33,9 @@ namespace APISubscriber.Models
             return subscribers;
         }
 
-        public SubscriberDetails GetSubscriberBySubNumber(int subNumber)
+        public SubscriberDetails GetSubscriberBySubNumber(string subNumber)
         {
-            string connectionString = "Host=localhost;Port=5432;Database=subscribers;Username=postgres;Password=isal0037";
+            string connectionString = "Host=localhost;Port=5432;Database=subscribers;Username=admin;Password=isal0037";
 
             using NpgsqlConnection connection = new NpgsqlConnection(connectionString);
 
@@ -51,8 +51,8 @@ namespace APISubscriber.Models
             if (reader.Read())
             {
                 subscriber.SubscriberId = Convert.ToInt32(reader["subscriber_id"]);
-                subscriber.SubsciptionNumber = Convert.ToInt32(reader["sub_subscription_number"]);
-                subscriber.SubscriberSocialSecutityNumber = Convert.ToInt32(reader["sub_social_security_number"]);
+                subscriber.SubsciptionNumber = reader["sub_subscription_number"].ToString();
+                subscriber.SubscriberSocialSecutityNumber = reader["sub_social_security_number"].ToString();
                 subscriber.SubscriberFirstName = reader["sub_first_name"].ToString()!;
                 subscriber.SubscriberLastName = reader["sub_last_name"].ToString()!;
                 subscriber.SubscriberDeliveryAddress = reader["sub_delivery_address"].ToString()!;

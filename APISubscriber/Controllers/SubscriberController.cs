@@ -4,7 +4,7 @@ using APISubscriber.Models;
 namespace APISubscriber.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class SubscriberController : ControllerBase
     {
         [HttpGet]
@@ -17,7 +17,7 @@ namespace APISubscriber.Controllers
         }
 
         [HttpGet("{subNumber}")]
-        public IActionResult SelectSubscriberBySubNumber(int subNumber)
+        public IActionResult SelectSubscriberBySubNumber(string subNumber)
         {
             SubscriberMethods subscriberMethods = new SubscriberMethods();
             SubscriberDetails subscriber = subscriberMethods.GetSubscriberBySubNumber(subNumber);

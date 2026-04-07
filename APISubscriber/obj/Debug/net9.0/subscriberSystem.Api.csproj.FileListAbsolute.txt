@@ -67,3 +67,5 @@
 /Users/isacj/edu/AFI/newspaper/APISubscriber/obj/Debug/net9.0/subscrib.E3BCEC23.Up2Date
 /Users/isacj/edu/AFI/newspaper/APISubscriber/obj/Debug/net9.0/subscriberSystem.Api.genruntimeconfig.cache
 /Users/isacj/edu/AFI/newspaper/APISubscriber/obj/Debug/net9.0/ref/subscriberSystem.Api.dll
+/Users/isacj/edu/AFI/newspaper/APISubscriber/obj/Debug/net9.0/subscriberSystem.Api.sourcelink.json
+/Users/isacj/edu/AFI/newspaper/APISubscriber/bin/Debug/net9.0/Newtonsoft.Json.dll

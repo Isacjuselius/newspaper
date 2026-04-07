@@ -6,7 +6,7 @@ namespace APISubscriber.Models
     public class SubscriberDetails
     {
         //Konstruktor
-        public SubscriberDetails(int subscriberId, int subsciptionNumber, int subscriberSocialSecutityNumber, string subscriberFirstName, string subscriberLastName, string subscriberDeliveryAddress, string subscriberPostalCode)
+        public SubscriberDetails(int subscriberId, string subsciptionNumber, string subscriberSocialSecutityNumber, string subscriberFirstName, string subscriberLastName, string subscriberDeliveryAddress, string subscriberPostalCode)
         {
             SubscriberId = subscriberId;
             SubsciptionNumber = subsciptionNumber;
@@ -21,9 +21,9 @@ namespace APISubscriber.Models
         public SubscriberDetails(){}
 
         public int SubscriberId { get; set; }
-        public int SubsciptionNumber { get; set; }
+        public string SubsciptionNumber { get; set; }
         
-        public int SubscriberSocialSecutityNumber { get; set; }
+        public string SubscriberSocialSecutityNumber { get; set; }
         public string SubscriberFirstName { get; set; }
         public string SubscriberLastName { get; set; }
         public string SubscriberDeliveryAddress { get; set; }

@@ -1,0 +1,41 @@
+@model MVCAdvertisment.Models.SubscriberDetails
+
+@{
+    ViewData["Title"] = "Edit Subscriber";
+}
+
+<h2>Edit subscriber</h2>
+
+<form asp-action="EditSubscriber" method="post">
+
+    <input type="hidden" asp-for="SubscriptionNumber" />
+    <input type="hidden" asp-for="SubscriberSocialSecutityNumber" />
+    
+    <div class="form-group">
+        <label asp-for="SubscriberFirstName"></label>
+        <input asp-for="SubscriberFirstName" class="form-control" />
+        <span asp-validation-for="SubscriberFirstName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SubscriberLastName"></label>
+        <input asp-for="SubscriberLastName" class="form-control" />
+        <span asp-validation-for="SubscriberLastName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SubscriberDeliveryAddress"></label>
+        <input asp-for="SubscriberDeliveryAddress" class="form-control" />
+        <span asp-validation-for="SubscriberDeliveryAddress" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SubscriberPostalCode"></label>
+        <input asp-for="SubscriberPostalCode" class="form-control" />
+        <span asp-validation-for="SubscriberPostalCode" class="text-danger"></span> 
+
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Save changes</button>
+
+</form>

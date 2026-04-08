@@ -26,6 +26,11 @@
                 <p><b>Name:</b> @Model.SubscriberFirstName @Model.SubscriberLastName</p>
                 <p><b>Delivery address:</b> @Model.SubscriberDeliveryAddress</p>
                 <p><b>Postal code:</b> @Model.SubscriberPostalCode</p>
+                
+                <form asp-controller="Home" asp-action="EditSubscriber" method="get">
+                    <input type="hidden" name="subNumber" value="@Model.SubscriptionNumber" />
+                    <button type="submit">Edit Subscriber </button>
+                </form>
             </div>
         }
 </div>

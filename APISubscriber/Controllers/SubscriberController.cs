@@ -24,5 +24,15 @@ namespace APISubscriber.Controllers
 
             return Ok(subscriber);
         }
+
+        [HttpPut("{subNumber}")]
+        public IActionResult UpdateSubscriber(string subNumber,[FromBody] SubscriberDetails editSubscriber)
+        {
+            editSubscriber.SubscriptionNumber = subNumber;
+            SubscriberMethods subscriberMethods = new SubscriberMethods();
+            SubscriberDetails updatedSubscriber = subscriberMethods.EditSubscriberBySubDetails(editSubscriber);
+
+            return Ok(updatedSubscriber);
+        }
     }
 }

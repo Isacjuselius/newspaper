@@ -1,9 +1,9 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using advertisementsSystem.Mvc.Models;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using MVCAdvertisment.Models;
+using System.Text;
 
 namespace advertisementsSystem.Mvc.Controllers;
 
@@ -54,6 +54,58 @@ public class HomeController : Controller
         Console.WriteLine("API call failed");
 
         return View("createAdvertisment");
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> EditSubscriber(string subNumber)
+    {
+        if (string.IsNullOrWhiteSpace(subNumber))
+        {
+            return Content("subNumber saknas");
+        }
+
+        HttpClient client = new HttpClient();
+        client.BaseAddress = new Uri("http://localhost:5285/");
+        client.DefaultRequestHeaders.Accept.Clear();
+        client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+        HttpResponseMessage response = await client.GetAsync($"api/Subscriber/{subNumber}");
+        response.EnsureSuccessStatusCode();
+        if (response.IsSuccessStatusCode)
+        {
+            Console.WriteLine("API call successful");
+            string apiResponse = await response.Content.ReadAsStringAsync();
+            var subscriber = JsonConvert.DeserializeObject<SubscriberDetails>(apiResponse);
+            return View("EditSubscriber", subscriber);
+        }
+        return View("createAdvertisment", subNumber);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> EditSubscriber(SubscriberDetails subscriber)
+    {
+        HttpClient client = new HttpClient();
+        client.BaseAddress = new Uri("http://localhost:5285/");
+        client.DefaultRequestHeaders.Accept.Clear();
+        client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+        var json = JsonConvert.SerializeObject(subscriber);
+        var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+        HttpResponseMessage response = await client.PutAsync($"api/Subscriber/{subscriber.SubscriptionNumber}", content);
+        string apiResponse = await response.Content.ReadAsStringAsync();
+        response.EnsureSuccessStatusCode();
+
+
+
+        if (response.IsSuccessStatusCode)
+        {
+            Console.WriteLine("API call successful");
+            return RedirectToAction("createAdvertisment", subscriber);
+        }
+        Console.WriteLine("API call failed");
+        
+        return View("EditSubscriber", subscriber.SubscriptionNumber);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

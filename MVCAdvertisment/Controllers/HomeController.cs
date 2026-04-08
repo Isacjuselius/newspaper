@@ -27,7 +27,7 @@ public class HomeController : Controller
     }
 
     //Visa vyn för att skapa en annons
-    public IActionResult createAdvertisment()
+    public IActionResult selectAnnonsorer()
     {
         
         return View();
@@ -49,11 +49,11 @@ public class HomeController : Controller
             Console.WriteLine("API call successful");
             string apiResponse = await response.Content.ReadAsStringAsync();
             var subscriber = JsonConvert.DeserializeObject<SubscriberDetails>(apiResponse);
-            return View("createAdvertisment", subscriber);
+            return View("selectAnnonsorer", subscriber);
         }
         Console.WriteLine("API call failed");
 
-        return View("createAdvertisment");
+        return View("selectAnnonsorer");
     }
 
     [HttpGet]
@@ -78,7 +78,7 @@ public class HomeController : Controller
             var subscriber = JsonConvert.DeserializeObject<SubscriberDetails>(apiResponse);
             return View("EditSubscriber", subscriber);
         }
-        return View("createAdvertisment", subNumber);
+        return View("selectAnnonsorer", subNumber);
     }
 
     [HttpPost]
@@ -101,7 +101,7 @@ public class HomeController : Controller
         if (response.IsSuccessStatusCode)
         {
             Console.WriteLine("API call successful");
-            return RedirectToAction("createAdvertisment", subscriber);
+            return RedirectToAction("selectAnnonsorer", subscriber);
         }
         Console.WriteLine("API call failed");
         

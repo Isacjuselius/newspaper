@@ -20,6 +20,10 @@ build_property._RazorSourceGeneratorDebug =
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
+[/Users/isacj/edu/AFI/newspaper/MVCAdvertisment/Views/Home/createAdvertisment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9jcmVhdGVBZHZlcnRpc21lbnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/isacj/edu/AFI/newspaper/MVCAdvertisment/Views/Home/EditSubscriber.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9FZGl0U3Vic2NyaWJlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -30,10 +34,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/Users/isacj/edu/AFI/newspaper/MVCAdvertisment/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[/Users/isacj/edu/AFI/newspaper/MVCAdvertisment/Views/Home/selectAnnonsorer.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9zZWxlY3RBbm5vbnNvcmVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/isacj/edu/AFI/newspaper/MVCAdvertisment/Views/Shared/Error.cshtml]

@@ -1,0 +1,118 @@
+@model MVCAdvertisment.Models.CreateAdvertismentViewModel
+
+@{
+    ViewData["Title"] = "Create Advertisment";
+}
+
+<h2>Create a New Advertisment</h2> 
+
+<div class="subOrCompany">
+    <p>Select Type:</p>
+    <input type="radio" id="subscriber" name="type" value="subscriber" onclick="showSubscriberForm()" />
+    <label for="subscriber">Subscriber</label>
+    <input type="radio" id="company" name="type" value="company" onclick="showCompanyForm()" />
+    <label for="company">Company</label>
+</div>
+
+<div id="subscriberForm" style="display:@(Model.ShowSubscriberForm ? "block" : "none");">
+    <h3>Subscriber Information</h3>
+        <form asp-controller="Home" asp-action="getSubscriber" method="get">
+            <input type="text" placeholder="Subscriber Number" value="@Context.Request.Query["subNumber"]" name="subNumber" required/>
+            <button type="submit" class="btn btn-primary mt-3">Proceed</button>
+        </form>
+
+        @if (Model.Subscriber != null){
+            <div class="subscriberDetails">
+                <p><b>Name:</b> @Model.Subscriber.SubscriberFirstName @Model.Subscriber.SubscriberLastName</p>
+                <p><b>Delivery address:</b> @Model.Subscriber.SubscriberDeliveryAddress</p>
+                <p><b>Postal code:</b> @Model.Subscriber.SubscriberPostalCode</p>
+                
+                <form asp-controller="Home" asp-action="EditSubscriber" method="get">
+                    <input type="hidden" name="subNumber" value="@Model.Subscriber.SubscriptionNumber" />
+                    <button type="submit" class="btn btn-primary mt-3">Edit Subscriber</button>
+                </form>
+            </div>
+        }
+</div>
+
+<div id="companyForm" style="display:@(Model.ShowCompanyForm ? "block" : "none");">
+    <h3>Company Information</h3>
+
+    <form asp-controller="Home" asp-action="putCompany" method="post">
+        <div class="form-group">
+        <label>Company Name</label>
+        <input asp-for="@Model.Annonsorer.AdvName" class="form-control" />
+        <span asp-validation-for="@Model.Annonsorer.AdvName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Company Number</label>
+        <input asp-for="@Model.Annonsorer.AdvNumber" class="form-control" />
+        <span asp-validation-for="@Model.Annonsorer.AdvNumber" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Phone Number</label>
+        <input asp-for="@Model.Annonsorer.AdvPhoneNumber" class="form-control" />
+        <span asp-validation-for="@Model.Annonsorer.AdvPhoneNumber" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Delivery Address</label>
+        <input asp-for="@Model.Annonsorer.AdvDeliveryAddress" class="form-control" />
+        <span asp-validation-for="@Model.Annonsorer.AdvDeliveryAddress" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Postal Code</label>
+        <input asp-for="@Model.Annonsorer.AdvPostalCode" class="form-control" />
+        <span asp-validation-for="@Model.Annonsorer.AdvPostalCode" class="text-danger"></span> 
+    </div>
+
+    <div class="form-group">
+        <label>City</label>
+        <input asp-for="@Model.Annonsorer.AdvCity" class="form-control" />
+        <span asp-validation-for="@Model.Annonsorer.AdvCity" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Billing Address</label>
+        <input asp-for="@Model.Annonsorer.AdvBillingAddress" class="form-control" />
+        <span asp-validation-for="@Model.Annonsorer.AdvBillingAddress" class="text-danger"></span>
+    </div>
+    </form>
+
+</div>
+
+<div id="adForm" style="display:@(Model.ShowAdForm ? "block" : "none");">
+    <h3>Advertisement Information</h3>
+    <form asp-action="createAdvertisment" method="post">
+
+        <div class="form-group">
+            <label asp-for="@Model.Ad.AdTitle"></label>
+            <input asp-for="@Model.Ad.AdTitle" class="form-control" />
+            <span asp-validation-for="@Model.Ad.AdTitle" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="@Model.Ad.AdDescription"></label>
+            <input asp-for="@Model.Ad.AdDescription" class="form-control" />
+            <span asp-validation-for="@Model.Ad.AdDescription" class="text-danger"></span>
+        </div> 
+
+        <div class="form-group">
+            <label asp-for="@Model.Ad.AdItemPrice"></label>
+            <input asp-for="@Model.Ad.AdItemPrice" class="form-control" />
+            <span asp-validation-for="@Model.Ad.AdItemPrice" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label>Advertisment Price</label>
+            <input asp-for="Ad.AdPrice" id="adPrice" class="form-control" readonly />
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Create advertisement</button>
+    </form>
+</div>
+
+<script src="~/js/createAdvertisment.js"></script>

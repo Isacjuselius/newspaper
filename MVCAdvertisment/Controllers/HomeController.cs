@@ -27,10 +27,19 @@ public class HomeController : Controller
     }
 
     //Visa vyn för att skapa en annons
-    public IActionResult selectAnnonsorer()
+    public IActionResult createAdvertisment()
     {
+        var viewModel = new CreateAdvertismentViewModel
+        {
+            Subscriber = null,
+            Ad = new AdsDetails(),
+            Annonsorer = null,
+            ShowSubscriberForm = false,
+            ShowCompanyForm = false,
+            ShowAdForm = false
+        };
         
-        return View();
+        return View(viewModel);
     }
 
     //Hämte en prenumerant från API:et och visa den i vyn
@@ -49,11 +58,21 @@ public class HomeController : Controller
             Console.WriteLine("API call successful");
             string apiResponse = await response.Content.ReadAsStringAsync();
             var subscriber = JsonConvert.DeserializeObject<SubscriberDetails>(apiResponse);
-            return View("selectAnnonsorer", subscriber);
+            
+            var viewModel = new CreateAdvertismentViewModel
+            {
+                Subscriber = subscriber,
+                Ad = new AdsDetails(),
+                ShowSubscriberForm = true,
+                ShowCompanyForm = false,
+                ShowAdForm = true
+            };
+
+            return View("createAdvertisment", viewModel);
         }
         Console.WriteLine("API call failed");
 
-        return View("selectAnnonsorer");
+        return View("createAdvertisment", subNumber);
     }
 
     [HttpGet]

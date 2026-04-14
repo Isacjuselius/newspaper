@@ -38,72 +38,73 @@
 <div id="companyForm" style="display:@(Model.ShowCompanyForm ? "block" : "none");">
     <h3>Company Information</h3>
 
-    <form asp-controller="Home" asp-action="putCompany" method="post">
+    <form asp-controller="Home" asp-action="InsertOrFetchAdvertiser" method="post">
         <div class="form-group">
         <label>Company Name</label>
-        <input asp-for="@Model.Annonsorer.AdvName" class="form-control" />
-        <span asp-validation-for="@Model.Annonsorer.AdvName" class="text-danger"></span>
+        <input asp-for="Annonsorer.AdvName" class="form-control" />
+        <span asp-validation-for="Annonsorer.AdvName" class="text-danger"></span>
     </div>
 
     <div class="form-group">
         <label>Company Number</label>
-        <input asp-for="@Model.Annonsorer.AdvNumber" class="form-control" />
-        <span asp-validation-for="@Model.Annonsorer.AdvNumber" class="text-danger"></span>
+        <input asp-for="Annonsorer.AdvNumber" class="form-control" />
+        <span asp-validation-for="Annonsorer.AdvNumber" class="text-danger"></span>
     </div>
 
     <div class="form-group">
         <label>Phone Number</label>
-        <input asp-for="@Model.Annonsorer.AdvPhoneNumber" class="form-control" />
-        <span asp-validation-for="@Model.Annonsorer.AdvPhoneNumber" class="text-danger"></span>
+        <input asp-for="Annonsorer.AdvPhoneNumber" class="form-control" />
+        <span asp-validation-for="Annonsorer.AdvPhoneNumber" class="text-danger"></span>
     </div>
 
     <div class="form-group">
         <label>Delivery Address</label>
-        <input asp-for="@Model.Annonsorer.AdvDeliveryAddress" class="form-control" />
-        <span asp-validation-for="@Model.Annonsorer.AdvDeliveryAddress" class="text-danger"></span>
+        <input asp-for="Annonsorer.AdvDeliveryAddress" class="form-control" />
+        <span asp-validation-for="Annonsorer.AdvDeliveryAddress" class="text-danger"></span>
     </div>
 
     <div class="form-group">
         <label>Postal Code</label>
-        <input asp-for="@Model.Annonsorer.AdvPostalCode" class="form-control" />
-        <span asp-validation-for="@Model.Annonsorer.AdvPostalCode" class="text-danger"></span> 
+        <input asp-for="Annonsorer.AdvPostalCode" class="form-control" />
+        <span asp-validation-for="Annonsorer.AdvPostalCode" class="text-danger"></span> 
     </div>
 
     <div class="form-group">
         <label>City</label>
-        <input asp-for="@Model.Annonsorer.AdvCity" class="form-control" />
-        <span asp-validation-for="@Model.Annonsorer.AdvCity" class="text-danger"></span>
+        <input asp-for="Annonsorer.AdvCity" class="form-control" />
+        <span asp-validation-for="Annonsorer.AdvCity" class="text-danger"></span>
     </div>
 
     <div class="form-group">
         <label>Billing Address</label>
-        <input asp-for="@Model.Annonsorer.AdvBillingAddress" class="form-control" />
-        <span asp-validation-for="@Model.Annonsorer.AdvBillingAddress" class="text-danger"></span>
+        <input asp-for="Annonsorer.AdvBillingAddress" class="form-control" />
+        <span asp-validation-for="Annonsorer.AdvBillingAddress" class="text-danger"></span>
     </div>
+    <button type="submit" class="btn btn-primary mt-3">Proceed</button>
     </form>
 
 </div>
 
 <div id="adForm" style="display:@(Model.ShowAdForm ? "block" : "none");">
     <h3>Advertisement Information</h3>
-    <form asp-action="createAdvertisment" method="post">
+    <form asp-controller="Home" asp-action="createAdvertisment" method="post">
 
         <div class="form-group">
-            <label asp-for="@Model.Ad.AdTitle"></label>
-            <input asp-for="@Model.Ad.AdTitle" class="form-control" />
-            <span asp-validation-for="@Model.Ad.AdTitle" class="text-danger"></span>
+            <label asp-for="Ad.AdTitle"></label>
+            <input asp-for="Ad.AdTitle" class="form-control" />
+            <span asp-validation-for="Ad.AdTitle" class="text-danger"></span>
         </div>
 
         <div class="form-group">
-            <label asp-for="@Model.Ad.AdDescription"></label>
-            <input asp-for="@Model.Ad.AdDescription" class="form-control" />
-            <span asp-validation-for="@Model.Ad.AdDescription" class="text-danger"></span>
+            <label asp-for="Ad.AdDescription"></label>
+            <input asp-for="Ad.AdDescription" class="form-control" />
+            <span asp-validation-for="Ad.AdDescription" class="text-danger"></span>
         </div> 
 
         <div class="form-group">
-            <label asp-for="@Model.Ad.AdItemPrice"></label>
-            <input asp-for="@Model.Ad.AdItemPrice" class="form-control" />
-            <span asp-validation-for="@Model.Ad.AdItemPrice" class="text-danger"></span>
+            <label asp-for="Ad.AdItemPrice"></label>
+            <input asp-for="Ad.AdItemPrice" class="form-control" />
+            <span asp-validation-for="Ad.AdItemPrice" class="text-danger"></span>
         </div>
 
         <div class="form-group">

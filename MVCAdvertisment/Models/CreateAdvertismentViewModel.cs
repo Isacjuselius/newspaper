@@ -9,7 +9,6 @@ namespace MVCAdvertisment.Models
         public bool ShowSubscriberForm { get; set; }
         public bool ShowCompanyForm { get; set; }
         public bool ShowAdForm { get; set; }
-        public bool isSubscriber { get; set; } 
 
     }
 }

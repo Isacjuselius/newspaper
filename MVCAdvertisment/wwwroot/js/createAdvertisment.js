@@ -8,7 +8,7 @@ function showSubscriberForm() {
 function showCompanyForm() {
     document.getElementById("subscriberForm").style.display = "none";
     document.getElementById("companyForm").style.display = "block";
-    document.getElementById("adForm").style.display = "block";
+    document.getElementById("adForm").style.display = "none";
     document.getElementById("adPrice").value = "40";
 }   
 

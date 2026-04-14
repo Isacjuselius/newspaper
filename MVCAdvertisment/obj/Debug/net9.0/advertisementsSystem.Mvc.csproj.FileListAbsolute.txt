@@ -98,4 +98,5 @@
 /Users/isacj/edu/AFI/newspaper/MVCAdvertisment/bin/Debug/net9.0/Newtonsoft.Json.dll
 /Users/isacj/edu/AFI/newspaper/MVCAdvertisment/obj/Debug/net9.0/advertisementsSystem.Mvc.csproj.AssemblyReference.cache
 /Users/isacj/edu/AFI/newspaper/MVCAdvertisment/obj/Debug/net9.0/advertis.2E90E11C.Up2Date
-/Users/isacj/edu/AFI/newspaper/MVCAdvertisment/obj/Debug/net9.0/compressed/xcldr3mtu8-m6ydzz0xpz.gz
+/Users/isacj/edu/AFI/newspaper/MVCAdvertisment/bin/Debug/net9.0/Npgsql.dll
+/Users/isacj/edu/AFI/newspaper/MVCAdvertisment/obj/Debug/net9.0/compressed/xcldr3mtu8-z7z9uq7iyv.gz

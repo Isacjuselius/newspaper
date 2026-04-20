@@ -52,6 +52,9 @@ public class HomeController : Controller
         }
 
         AdsMethods methods = new AdsMethods();
+        Console.WriteLine("Ad title: " + vm.Ad.AdTitle);
+        Console.WriteLine("Ad price: " + vm.Ad.AdPrice);
+        Console.WriteLine("AdvId: " + vm.Ad.AdvId);
         int rowsInserted = methods.InsertAd(vm.Ad);
         if (rowsInserted > 0)
         {
@@ -84,24 +87,14 @@ public class HomeController : Controller
     [HttpPost]
     public IActionResult InsertOrFetchAdvertiser(CreateAdvertismentViewModel vm)
     {
-         ModelState.Remove("Ad");
-        Console.WriteLine("AdvName: " + vm.Annonsorer?.AdvName);
-        Console.WriteLine("AdvNumber: " + vm.Annonsorer?.AdvNumber);
-        Console.WriteLine("ModelState valid: " + ModelState.IsValid);
+        ModelState.Remove("Ad");
+        ModelState.Remove("Subscriber");    
 
-        foreach (var item in ModelState)
-        {
-            foreach (var error in item.Value.Errors)
-            {
-                Console.WriteLine($"{item.Key}: {error.ErrorMessage}");
-            }
-        }
-
-       
         AnnonsorerDetails annonsor = vm.Annonsorer;
 
         if (!ModelState.IsValid)
         {
+            Console.WriteLine("Model state is invalid");
             var invalidViewModel = new CreateAdvertismentViewModel
             {
                 Subscriber = null,
@@ -111,6 +104,7 @@ public class HomeController : Controller
                 ShowCompanyForm = true,
                 ShowAdForm = true
             };
+            Console.WriteLine("VIEWMODEL Ad.AdvId before return: " + invalidViewModel.Ad.AdvId);
             return View("createAdvertisment", invalidViewModel);
         }
     
@@ -119,31 +113,43 @@ public class HomeController : Controller
         if (existingAnnonsor != null)
         {
             Console.WriteLine("Advertiser already exists with this number");
+            Console.WriteLine("AdvId: " + existingAnnonsor.AdvId);
             var viewModel = new CreateAdvertismentViewModel
             {
                 Subscriber = null,
-                Ad = new AdsDetails { AdPrice = 40 },
+                Ad = new AdsDetails 
+                { 
+                    AdPrice = 40, 
+                    AdvId = existingAnnonsor.AdvId
+                },
                 Annonsorer = existingAnnonsor,
                 ShowSubscriberForm = false,
                 ShowCompanyForm = true,
                 ShowAdForm = true
             };
+            Console.WriteLine("VIEWMODEL Ad.AdvId before return: " + viewModel.Ad.AdvId);
             return View("createAdvertisment", viewModel);
         }
 
         int rows = methods.InsertAdvertiser(annonsor);
+        AnnonsorerDetails insertedAnnonsor = methods.GetAdvertiserByAdvNumber(annonsor.AdvNumber);
         if (rows != 0)
         {
             Console.WriteLine("Advertiser inserted successfully");
             var viewModel = new CreateAdvertismentViewModel
             {
                 Subscriber = null,
-                Ad = new AdsDetails{ AdPrice = 40 },
-                Annonsorer = annonsor,
+                Ad = new AdsDetails
+                { 
+                    AdPrice = 40, 
+                    AdvId = insertedAnnonsor.AdvId 
+                },
+                Annonsorer = insertedAnnonsor,
                 ShowSubscriberForm = false,
                 ShowCompanyForm = true,
                 ShowAdForm = true
             };
+            Console.WriteLine("VIEWMODEL Ad.AdvId before return: " + viewModel.Ad.AdvId);
             return View("createAdvertisment", viewModel);
         }
         Console.WriteLine("Failed to insert advertiser");
@@ -157,6 +163,7 @@ public class HomeController : Controller
             ShowCompanyForm = false,
             ShowAdForm = false
         };
+        Console.WriteLine("VIEWMODEL Ad.AdvId before return: " + failedViewModel.Ad.AdvId);
         return View("createAdvertisment", failedViewModel);
     }
 

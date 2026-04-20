@@ -51,14 +51,13 @@ namespace MVCAdvertisment.Models
             string sqlString = "SELECT * FROM tbl_annonsorer WHERE adv_number = @advNumber";
             using NpgsqlCommand command = new NpgsqlCommand(sqlString, connection);
             command.Parameters.AddWithValue("@advNumber", advNumber);
-
             connection.Open();
-
-            AnnonsorerDetails annonsor = new AnnonsorerDetails();
             using NpgsqlDataReader reader = command.ExecuteReader();
 
             if (reader.Read())
             {
+                Console.WriteLine("DB adv_id raw: " + reader["adv_id"]);
+                Console.WriteLine("DB adv_number raw: " + reader["adv_number"]);
                 return new AnnonsorerDetails
                 {
                     AdvId = Convert.ToInt32(reader["adv_id"]),

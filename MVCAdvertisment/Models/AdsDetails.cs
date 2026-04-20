@@ -2,13 +2,14 @@ namespace MVCAdvertisment.Models
 {
     public class AdsDetails
     {
-        public AdsDetails(int adId, string adTitle, string adDescription, int adItemPrice, int adPrice)
+        public AdsDetails(int adId, string adTitle, string adDescription, int adItemPrice, int adPrice, int advId)
         {
             AdId = adId;
             AdTitle = adTitle;
             AdDescription = adDescription;
             AdItemPrice = adItemPrice;
             AdPrice = adPrice;
+            AdvId = advId;
         }
 
         public AdsDetails() { }
@@ -18,5 +19,6 @@ namespace MVCAdvertisment.Models
         public string AdDescription { get; set; }
         public int AdItemPrice { get; set; }
         public int AdPrice { get; set; }
+        public int AdvId { get; set; }
     }
 }

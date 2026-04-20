@@ -1,0 +1,21 @@
+@model IEnumerable<MVCAdvertisment.Models.AdsDetails>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.AdTitle)</th>
+            <th>@Html.DisplayNameFor(model => model.AdDescription)</th>
+            <th>@Html.DisplayNameFor(model => model.AdItemPrice)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ad in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(model => ad.AdTitle)</td>
+                <td>@Html.DisplayFor(model => ad.AdDescription)</td>
+                <td>@Html.DisplayFor(model => ad.AdItemPrice)</td>
+            </tr>
+        }
+    </tbody>
+</table>

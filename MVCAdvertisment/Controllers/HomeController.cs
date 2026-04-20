@@ -26,6 +26,14 @@ public class HomeController : Controller
         return View();
     }
 
+    [HttpGet]
+    public IActionResult selectAds()
+    {
+        AdsMethods methods = new AdsMethods();
+        List<AdsDetails> adsList = methods.GetAds();
+        return View("selectAds", adsList);
+    }
+
     //Visa vyn för att skapa en annons
     [HttpGet]
     public IActionResult createAdvertisment()
@@ -252,7 +260,6 @@ public class HomeController : Controller
         HttpResponseMessage response = await client.PutAsync($"api/Subscriber/{subscriber.SubscriptionNumber}", content);
         string apiResponse = await response.Content.ReadAsStringAsync();
         response.EnsureSuccessStatusCode();
-
 
 
         if (response.IsSuccessStatusCode)

@@ -28,5 +28,7 @@ namespace APISubscriber.Models
         public string SubscriberLastName { get; set; }
         public string SubscriberDeliveryAddress { get; set; }
         public string SubscriberPostalCode { get; set; }
+        public string SubscriberPhoneNumber { get; set; }
+        public string SubscriberCity { get; set; }
     }
 }

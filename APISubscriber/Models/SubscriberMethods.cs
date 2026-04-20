@@ -26,6 +26,8 @@ namespace APISubscriber.Models
                 subscriber.SubscriberLastName = reader["sub_last_name"].ToString()!;
                 subscriber.SubscriberDeliveryAddress = reader["sub_delivery_address"].ToString()!;
                 subscriber.SubscriberPostalCode = reader["sub_postal_code"].ToString()!;
+                subscriber.SubscriberPhoneNumber = reader["sub_phone_number"].ToString()!;
+                subscriber.SubscriberCity = reader["sub_city"].ToString()!;
 
                 subscribers.Add(subscriber);
             }
@@ -57,6 +59,9 @@ namespace APISubscriber.Models
                 subscriber.SubscriberLastName = reader["sub_last_name"].ToString()!;
                 subscriber.SubscriberDeliveryAddress = reader["sub_delivery_address"].ToString()!;
                 subscriber.SubscriberPostalCode = reader["sub_postal_code"].ToString()!;
+                subscriber.SubscriberPhoneNumber = reader["sub_phone_number"].ToString()!;
+                subscriber.SubscriberCity = reader["sub_city"].ToString()!;
+
             }
 
             return subscriber;
@@ -75,6 +80,8 @@ namespace APISubscriber.Models
             command.Parameters.AddWithValue("@deliveryAddress", subscriber.SubscriberDeliveryAddress);
             command.Parameters.AddWithValue("@postalCode", subscriber.SubscriberPostalCode);
             command.Parameters.AddWithValue("@subNumber", subscriber.SubscriptionNumber);
+            command.Parameters.AddWithValue("@phoneNumber", subscriber.SubscriberPhoneNumber);
+            command.Parameters.AddWithValue("@city", subscriber.SubscriberCity);
 
             connection.Open();
 

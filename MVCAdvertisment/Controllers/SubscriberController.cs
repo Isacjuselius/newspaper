@@ -97,16 +97,27 @@ public class SubscriberController : Controller
         if (response.IsSuccessStatusCode)
         {
             Console.WriteLine("API call successful");
-            return RedirectToAction("~/Views/Ads/createAdvertisment.cshtml", subscriber);
+            var viewModel = new CreateAdvertismentViewModel
+            {
+                Subscriber = subscriber,
+                Ad = new AdsDetails(),
+                Annonsorer = new AnnonsorerDetails(),
+                ShowSubscriberForm = true,
+                ShowCompanyForm = false,
+                ShowAdForm = true
+            };
+            return View("~/Views/Ads/createAdvertisment.cshtml", viewModel);
         }
         Console.WriteLine("API call failed");
-        
-        return View("EditSubscriber", subscriber.SubscriptionNumber);
-    }
-
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var failedViewModel = new CreateAdvertismentViewModel
+            {
+                Subscriber = subscriber,
+                Ad = new AdsDetails(),
+                Annonsorer = new AnnonsorerDetails(),
+                ShowSubscriberForm = true,
+                ShowCompanyForm = false,
+                ShowAdForm = true
+            };
+        return View("EditSubscriber", failedViewModel);
     }
 }

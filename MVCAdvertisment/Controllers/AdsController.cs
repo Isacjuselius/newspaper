@@ -39,18 +39,6 @@ public class AdsController : Controller
         if (!ModelState.IsValid)
         {
             Console.WriteLine("Model state is invalid");
-              foreach (var item in ModelState)
-                {
-
-                    foreach (var error in item.Value.Errors)
-
-                    {
-
-                        Console.WriteLine($"{item.Key}: {error.ErrorMessage}");
-
-                    }
-
-                }
             return View("~/Views/Ads/createAdvertisment.cshtml", new CreateAdvertismentViewModel { Ad = vm.Ad });
         }
 
@@ -115,7 +103,7 @@ public class AdsController : Controller
                 ShowCompanyForm = false,
                 ShowAdForm = true
             };
-            return View("~/Views/Ads/createAdvertisment.cshtml", viewModel);
+            return View("~/Views/Ads/selectAds.cshtml", viewModel);
         }
         Console.WriteLine("Failed to insert ad");
 

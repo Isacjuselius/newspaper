@@ -28,7 +28,6 @@ public class AnnonsorController : Controller
                 ShowCompanyForm = true,
                 ShowAdForm = true
             };
-            Console.WriteLine("VIEWMODEL Ad.AdvId before return: " + invalidViewModel.Ad.AdvId);
             return View("~/Views/Ads/createAdvertisment.cshtml", invalidViewModel);
         }
     
@@ -51,7 +50,7 @@ public class AnnonsorController : Controller
                 ShowCompanyForm = true,
                 ShowAdForm = true
             };
-            Console.WriteLine("VIEWMODEL Ad.AdvId before return: " + viewModel.Ad.AdvId);
+
             return View("~/Views/Ads/createAdvertisment.cshtml", viewModel);
         }
 
@@ -73,7 +72,6 @@ public class AnnonsorController : Controller
                 ShowCompanyForm = true,
                 ShowAdForm = true
             };
-            Console.WriteLine("VIEWMODEL Ad.AdvId before return: " + viewModel.Ad.AdvId);
             return View("~/Views/Ads/createAdvertisment.cshtml", viewModel);
         }
         Console.WriteLine("Failed to insert advertiser");
@@ -87,7 +85,7 @@ public class AnnonsorController : Controller
             ShowCompanyForm = false,
             ShowAdForm = false
         };
-        Console.WriteLine("VIEWMODEL Ad.AdvId before return: " + failedViewModel.Ad.AdvId);
+
         return View("~/Views/Ads/createAdvertisment.cshtml", failedViewModel);
     }
 }

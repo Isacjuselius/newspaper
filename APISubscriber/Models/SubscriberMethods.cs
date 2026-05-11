@@ -4,36 +4,6 @@ namespace APISubscriber.Models
 {
     public class SubscriberMethods
     {
-        public List<SubscriberDetails> GetAllSubscribers()
-        {
-            string connectionString = "Host=localhost;Port=5432;Database=subscribers;Username=admin;Password=isal0037";
-
-            List<SubscriberDetails> subscribers = new List<SubscriberDetails>();
-
-            using NpgsqlConnection connection = new NpgsqlConnection(connectionString);
-
-            string sqlString = "SELECT * FROM tbl_subscribers";
-            using NpgsqlCommand command = new NpgsqlCommand(sqlString, connection);
-
-            connection.Open();
-
-            using NpgsqlDataReader reader = command.ExecuteReader();
-
-            while (reader.Read())
-            {
-                SubscriberDetails subscriber = new SubscriberDetails();
-                subscriber.SubscriberFirstName = reader["sub_first_name"].ToString()!;
-                subscriber.SubscriberLastName = reader["sub_last_name"].ToString()!;
-                subscriber.SubscriberDeliveryAddress = reader["sub_delivery_address"].ToString()!;
-                subscriber.SubscriberPostalCode = reader["sub_postal_code"].ToString()!;
-                subscriber.SubscriberPhoneNumber = reader["sub_phone_number"].ToString()!;
-                subscriber.SubscriberCity = reader["sub_city"].ToString()!;
-
-                subscribers.Add(subscriber);
-            }
-
-            return subscribers;
-        }
 
         public SubscriberDetails GetSubscriberBySubNumber(string subNumber)
         {

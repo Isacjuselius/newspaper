@@ -15,21 +15,17 @@ public class AnnonsorController : Controller
         ModelState.Remove("Subscriber");    
 
         AnnonsorerDetails annonsor = vm.Annonsorer;
-
-        if (!ModelState.IsValid)
+        foreach (var error in ModelState)
         {
-            Console.WriteLine("Model state is invalid");
-            var invalidViewModel = new CreateAdvertismentViewModel
+            Console.WriteLine($"Field: {error.Key}");
+
+            foreach (var subError in error.Value.Errors)
             {
-                Subscriber = null,
-                Ad = new AdsDetails{ AdPrice = 40 },
-                Annonsorer = annonsor,
-                ShowSubscriberForm = false,
-                ShowCompanyForm = true,
-                ShowAdForm = true
-            };
-            return View("~/Views/Ads/createAdvertisment.cshtml", invalidViewModel);
+                Console.WriteLine($"Error: {subError.ErrorMessage}");
+            }
         }
+
+        
     
         AnnonsorerMethods methods = new AnnonsorerMethods();
         AnnonsorerDetails existingAnnonsor = methods.GetAdvertiserByAdvNumber(annonsor.AdvNumber);
@@ -52,6 +48,35 @@ public class AnnonsorController : Controller
             };
 
             return View("~/Views/Ads/createAdvertisment.cshtml", viewModel);
+        }
+        
+        if (!ModelState.IsValid)
+        {
+            
+            Console.WriteLine($"ModelState.IsValid: {ModelState.IsValid}");
+            foreach (var error in ModelState)
+            {
+                if (error.Value.Errors.Count > 0)  // Skriv bara ut fält som HAR fel
+                {
+                    Console.WriteLine($"Field: {error.Key}");
+                    foreach (var subError in error.Value.Errors)
+                    {
+                        Console.WriteLine($"  Error: {subError.ErrorMessage}");
+                        if (subError.Exception != null)
+                            Console.WriteLine($"  Exception: {subError.Exception.Message}");
+                    }
+                }
+            }
+            var invalidViewModel = new CreateAdvertismentViewModel
+            {
+                Subscriber = null,
+                Ad = new AdsDetails{ AdPrice = 40 },
+                Annonsorer = annonsor,
+                ShowSubscriberForm = false,
+                ShowCompanyForm = true,
+                ShowAdForm = true
+            };
+            return View("~/Views/Ads/createAdvertisment.cshtml", invalidViewModel);
         }
 
         int rows = methods.InsertAdvertiser(annonsor);

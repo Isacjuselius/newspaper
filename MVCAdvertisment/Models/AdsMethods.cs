@@ -61,5 +61,6 @@ namespace MVCAdvertisment.Models
             }
             return adsList;
         }
+
     }
 }

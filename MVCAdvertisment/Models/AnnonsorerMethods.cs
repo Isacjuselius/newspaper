@@ -73,6 +73,35 @@ namespace MVCAdvertisment.Models
 
             return null;
         }
+
+        public AnnonsorerDetails? GetAdvertiserByAdvId(int advId)
+        {
+            string connectionString = "Host=localhost;Port=5432;Database=advertisment;Username=admin;Password=isal0037";
+            using NpgsqlConnection connection = new NpgsqlConnection(connectionString);
+
+            string sqlString = "SELECT * FROM tbl_annonsorer WHERE adv_id = @advId";
+            using NpgsqlCommand command = new NpgsqlCommand(sqlString, connection);
+            command.Parameters.AddWithValue("@advId", advId);
+            connection.Open();
+            using NpgsqlDataReader reader = command.ExecuteReader();
+
+            if (reader.Read())
+            {
+                return new AnnonsorerDetails
+                {
+                    AdvId = Convert.ToInt32(reader["adv_id"]),
+                    AdvName = reader["adv_name"].ToString(),
+                    AdvNumber = reader["adv_number"].ToString(),
+                    AdvPhoneNumber = reader["adv_phone_number"].ToString(),
+                    AdvDeliveryAddress = reader["adv_delivery_address"].ToString(),
+                    AdvPostalCode = reader["adv_postal_code"].ToString(),
+                    AdvCity = reader["adv_city"].ToString(),
+                    AdvBillingAddress = reader["adv_billing_address"].ToString()
+                };
+            }
+
+            return null;
+        }
         
     }
 }

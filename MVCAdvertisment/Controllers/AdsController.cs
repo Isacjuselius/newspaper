@@ -38,6 +38,17 @@ public class AdsController : Controller
     {
         if (!ModelState.IsValid)
         {
+            Console.WriteLine($"ModelState.IsValid: {ModelState.IsValid}");
+            foreach (var error in ModelState)
+            {
+                Console.WriteLine($"Field: {error.Key}, ValidationState: {error.Value.ValidationState}");
+                foreach (var subError in error.Value.Errors)
+                {
+                    Console.WriteLine($"  Error: {subError.ErrorMessage}");
+                    if (subError.Exception != null)
+                        Console.WriteLine($"  Exception: {subError.Exception.Message}");
+                }
+            }
             Console.WriteLine("Model state is invalid");
             return View("~/Views/Ads/createAdvertisment.cshtml", new CreateAdvertismentViewModel { Ad = vm.Ad });
         }
@@ -81,9 +92,17 @@ public class AdsController : Controller
 
             vm.Ad.AdvId = annonsor.AdvId;
             vm.Ad.AdPrice = 0;
+        
+        
+        } else if (vm.Ad.AdvId != 0) {
+            AnnonsorerDetails? annonsor = annonsorerMethods.GetAdvertiserByAdvId(vm.Ad.AdvId);
+
+            vm.Ad.AdPrice = 40;
+            vm.Annonsorer = annonsor;
+            
         } else {
             
-            Console.WriteLine("Subscriber information is missing");
+            Console.WriteLine("No subscriber or advertiser information provided");
             return View("~/Views/Ads/createAdvertisment.cshtml", new CreateAdvertismentViewModel { Ad = vm.Ad });
         }
 
@@ -103,7 +122,7 @@ public class AdsController : Controller
                 ShowCompanyForm = false,
                 ShowAdForm = true
             };
-            return View("~/Views/Ads/selectAds.cshtml", viewModel);
+            return View("~/Views/Ads/createAdvertisment.cshtml", viewModel);
         }
         Console.WriteLine("Failed to insert ad");
 
